@@ -220,7 +220,7 @@ function loadAvatar(gender) {
   scene.add(light);
 
   const loader = new THREE.GLTFLoader();
-  const file = gender === "female" ? "female.glb" : "male.glb";
+  const file = gender === "female" ? "https://drive.google.com/file/d/1Xc13Kg9WeN-T7knYlo8j9duJgiBHSEUP/view?usp=drive_link" : "https://drive.google.com/file/d/1EDM-CpRTslZcPrXa-p3E8Ogq4DSR4K_C/view?usp=drive_link";
 
   loader.load(file, gltf => {
     const model = gltf.scene;
@@ -254,4 +254,5 @@ function loadAvatar(gender) {
     camera.updateProjectionMatrix();
     renderer.setSize(viewer.clientWidth, viewer.clientHeight);
   });
+
 }
