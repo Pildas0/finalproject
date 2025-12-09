@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intermittent Fasting Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+  
+  <nav class="bg-gray-800 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-yellow-400 font-bold text-xl">BMI Calculator</a>
+      <div class="space-x-6">
+        <a href="JavaScriptProjectRedi.html" class="text-gray-300 hover:text-yellow-400">Home</a>
+        <a href="fasting.html" class="text-gray-300 hover:text-yellow-400">Intermittent Fasting</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto p-6 space-y-8">
+
+    
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-yellow-400 mb-4">🎥 What is Intermittent Fasting?</h2>
+      <p class="text-gray-300 mb-4">
+        Intermittent fasting is a pattern of eating based on time limits. For a set time of hours or days, you eat a typical diet. At the end of the set time, you switch to very few or no calories, called fasting.
+      </p>
+      <p class="text-gray-300 mb-4">
+        When practiced for health benefits, intermittent fasting can be done in different ways. Fasts can last hours or a full day.
+      </p>
+
+      <!-- Pros and cons -->
+      <h3 class="text-xl font-semibold text-green-400 mb-2">✅ Pros: Benefits</h3>
+      <ul class="list-disc list-inside text-gray-200 mb-4">
+        <li>Weight loss</li>
+        <li>Lower cholesterol</li>
+        <li>Lower blood pressure</li>
+        <li>Improved blood sugar</li>
+        <li>Reduced insulin resistance</li>
+        <li>Less inflammation</li>
+        <li>Better brain health</li>
+        <li>Cellular repair</li>
+        <li>Fewer age-related diseases</li>
+        <li>Longer life</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold text-red-400 mb-2">⚠️ Cons: Cautions</h3>
+      <p class="text-gray-300 mb-2">Intermittent fasting may not be suitable for everyone. Avoid or consult a doctor if you:</p>
+      <ul class="list-disc list-inside text-gray-200 mb-4">
+        <li>Are over 65</li>
+        <li>Are still growing (children, teens, young adults)</li>
+        <li>Have diabetes</li>
+        <li>Have heart, kidney, or liver disease</li>
+        <li>Have a history of eating disorders</li>
+        <li>Are pregnant or breastfeeding</li>
+        <li>Have low blood pressure</li>
+        <li>Take medications affecting blood sugar or blood pressure</li>
+      </ul>
+
+      <!-- Video -->
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe class="w-full h-64 rounded-lg shadow-md"
+          src="https://www.youtube.com/embed/URSwRHb4Uv0"
+          title="Intermittent Fasting Explanation"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Types-->
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-yellow-400 mb-4">📖 Types of Intermittent Fasting</h2>
+      <div id="fasting-info" class="space-y-2">
+       <p>The 16/8 method: Only eating between 10 a.m. and 6 p.m.</p>
+       <p>The 14/10 method: Only eating between 9 a.m. and 7 p.m.</p>
+<p>The 5:2 method</p>
+      </div>
+    </section>
+
+    <!-- Water  -->
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-blue-400 mb-4">💧 Daily Water Recommendation</h2>
+      <label for="weight" class="block text-gray-300">Enter your weight (kg):</label>
+      <input type="number" id="weight" placeholder="e.g. 70" class="mt-2 p-2 rounded-md w-full text-gray-900">
+      <button onclick="calculateWater()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Calculate Water Intake</button>
+      <p id="water-result" class="mt-3 text-gray-200 font-medium"></p>
+    </section>
+
+    
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-green-400 mb-4">⏰ Fasting Plan Selector</h2>
+      <label for="fasting-type" class="block text-gray-300">Choose your fasting type:</label>
+      <select id="fasting-type" class="mt-2 p-2 rounded-md w-full text-gray-900">
+        <option value="16-8">16/8 (16h fast, 8h eating)</option>
+        <option value="5-2">5:2 (5 normal days, 2 restricted)</option>
+        <option value="ADF">Alternate Day Fasting</option>
+        <option value="TRF">Time-Restricted Feeding (e.g. 10h window)</option>
+      </select>
+
+      <label for="start-time" class="block text-gray-300 mt-4">Select start time:</label>
+      <input type="time" id="start-time" class="mt-2 p-2 rounded-md w-full text-gray-900">
+
+      <button onclick="suggestFasting()" class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Suggest Fasting Window</button>
+      <p id="fasting-result" class="mt-3 text-gray-200 font-medium"></p>
+
+      <div class="mt-4 p-4 bg-red-900 text-red-100 rounded-lg border border-red-600">
+        ⚠️ Always consult your doctor or nutritionist before starting any fasting protocol.
+      </div>
+    </section>
+
+    
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-red-400 mb-4">🚫 Sugar & Sweetened Drinks</h2>
+      <p class="text-gray-300 mb-3">For better health outcomes, reduce or eliminate:</p>
+      <ul class="list-disc list-inside space-y-1 text-gray-200">
+        <li>🥤 Sugary sodas</li>
+        <li>🍹 Sweetened juices</li>
+        <li>🍬 Excessive sweets and desserts</li>
+        <li>☕ Coffee/tea with added sugar</li>
+      </ul>
+      <p class="mt-3 text-gray-300">Replacing these with water, unsweetened tea, or black coffee can significantly improve fasting benefits.</p>
+    </section>
+
+  </main>
+
+  
+ <script src="fasting.js"></script>
+ 
+  <footer class="text-center py-6 border-t border-gray-800">
+    <p>© Carl Brown 2025</p>
+  </footer>
+  </body>
+</html>

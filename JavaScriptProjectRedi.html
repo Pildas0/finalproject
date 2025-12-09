@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>BMI Health Hub</title>
+</head>
+<body class="bg-gray-950 text-gray-100 scroll-smooth">
+
+  <!-- HEADER -->
+  <header class="bg-gray-900/80 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <h1 class="text-3xl font-extrabold text-blue-400">BMI Health Hub</h1>
+      <nav>
+        <ul class="flex gap-6 text-lg font-medium">
+          <li><a href="#bmi" class="hover:text-blue-400 transition">BMI Calculator</a></li>
+          <li><a href="#fitness" class="hover:text-blue-400 transition">Fitness & Health</a></li>
+          <li><a href="#workout" class="hover:text-blue-400 transition">Workout Plan</a></li>
+          <li><a href="#ideal" class="hover:text-blue-400 transition">Ideal Weight</a></li>
+          <a href="fasting.html" class="text-gray-300 hover:text-yellow-400">Intermittent Fasting</a>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+     <article class="bg-gray-900 p-10 rounded-3xl shadow-xl border border-gray-800"> 
+          <h2 class="text-4xl font-bold text-blue-300 text-center mb-10">BMI introduction</h2>
+      <p>
+BMI is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height. Specifically, the value obtained from the calculation of BMI is used to categorize whether a person is underweight, normal weight, overweight, or obese depending on what range the value falls between. These ranges of BMI vary based on factors such as region and age, and are sometimes further divided into subcategories such as severely underweight or very severely obese. Being overweight or underweight can have significant health effects, so while BMI is an imperfect measure of healthy body weight, it is a useful indicator of whether any additional testing or action is required. Refer to the table below to see the different categories based on BMI that are used by the calculator.</p>
+     </article>
+
+    <!-- BMI CALCULATOR -->
+     
+    <section id="bmi" class="bg-gray-900 p-10 rounded-3xl shadow-xl border border-gray-800">
+      <h2 class="text-4xl font-bold text-blue-300 text-center mb-10">BMI Calculator</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+       
+
+        <!-- Input -->
+        <div class="p-6 bg-gray-800 rounded-xl shadow-inner border border-gray-700">
+          <h3 class="text-2xl font-semibold mb-6">Enter your data</h3>
+
+          <label for="weight" class="block mb-2 font-medium">Weight (kg)</label>
+          <input type="number" id="weight" min="1" placeholder="e.g., 72" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 mb-5" />
+
+          <label for="height" class="block mb-2 font-medium">Height (cm)</label>
+          <input type="number" id="height" min="50" placeholder="e.g., 175" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 mb-5" />
+
+          <label for="gender" class="block mb-2 font-medium">Gender</label>
+          <select id="gender" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 mb-5">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+
+          <label for="goal" class="block mb-2 font-medium">Goal</label>
+          <select id="goal" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 mb-5">
+            <option value="lose">Lose</option>
+            <option value="maintain">Maintain</option>
+            <option value="gain">Gain</option>
+          </select>
+
+          <button id="calculate-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition">Calculate BMI</button>
+         <!-- <p id="status" class="mt-4 text-sm text-gray-400"></p> -->
+        </div>
+       
+
+        <!-- Output -->
+        <div class="p-6 bg-gray-800 rounded-xl shadow-inner border border-gray-700 text-center">
+          <h3 class="text-2xl font-semibold mb-6">Your result</h3>
+
+          <!-- Horizontal Measuring Chart -->
+          <div class="relative w-full max-w-2xl mx-auto h-20 bg-gray-700 rounded-xl overflow-hidden mb-8 border border-gray-600">
+            <div class="absolute top-0 left-0 h-full w-[18.5%] bg-red-600"></div>
+            <div class="absolute top-0 left-[18.5%] h-full w-[25%] bg-green-600"></div>
+            <div class="absolute top-0 left-[43.5%] h-full w-[15%] bg-yellow-400"></div>
+            <div class="absolute top-0 left-[58.5%] h-full w-[41.5%] bg-red-700"></div>
+            <div class="absolute inset-0 flex justify-between items-end text-[11px] text-gray-200 px-3 pb-2">
+              <span>&lt; 18.5</span><span>18.5</span><span>25</span><span>30</span><span>&gt; 40</span>
+            </div>
+            <div id="bmi-marker" class="absolute top-0 h-full w-0.5 bg-blue-400 transition-all duration-500" style="left: 50%"></div>
+          </div>
+
+          <!-- Results -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left max-w-xl mx-auto">
+            <div>
+              <p class="text-sm text-gray-400">BMI</p>
+              <p id="bmi-value" class="text-2xl font-semibold text-blue-300">--</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Category</p>
+              <p id="bmi-category" class="text-2xl font-semibold text-green-300">--</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Healthy BMI range</p>
+              <p id="bmi-range" class="text-lg text-gray-200">18.5 – 25</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Ideal weight</p>
+              <p id="ideal-weight" class="text-lg text-gray-200">-- kg</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">BMI Prime</p>
+              <p id="bmi-prime" class="text-lg text-gray-200">--</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-400">Ponderal index</p>
+              <p id="ponderal-index" class="text-lg text-gray-200">--</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatar viewer -->
+      <div id="avatar-container" class="mt-12">
+        <div id="viewer" class="w-full h-[400px] rounded-xl border border-gray-700 bg-gray-900/50"></div>
+      </div>
+    </section>
+     <div >
+          <p id="status" class="mt-4 text-sm text-gray-400"></p>
+        </div>
+
+    <!-- FITNESS & HEALTH -->
+    <section id="fitness" class="bg-gray-900 p-10 rounded-3xl shadow-xl border border-gray-800">
+      <h2 class="text-4xl font-bold text-green-300 text-center mb-10">Fitness & Health</h2>
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <img src="https://media.istockphoto.com/id/1280587723/photo/healthy-eating-exercising-weight-and-blood-pressure-control.jpg?s=1024x1024&w=is&k=20&c=ExOmzETr4Zu9SK27Ba1CN-l7ugIx2JVMtpQewaId3yo=" alt="Fitness" class="rounded-xl shadow-lg border border-gray-700">
+        <img src="https://media.istockphoto.com/id/1363588189/photo/healthy-lifestyle-on-ketogenic-diet-eating-clean-keto-food-good-health-dietary-in-heart-dish.jpg?s=1024x1024&w=is&k=20&c=dIOIEFnahR6J5EB8QwStHAOeVtitEQbQlOvSiAMU1ec=" alt="Healthy Food" class="rounded-xl shadow-lg border border-gray-700">
+        <img src="https://media.istockphoto.com/id/1468860049/photo/fitness-woman-eating-a-healthy-poke-bowl-in-the-kitchen-at-home.jpg?s=1024x1024&w=is&k=20&c=wvo0akyUsvpQfa0x9C86btd8D2aRfsWiGLWdURWUT78=" alt="Yoga" class="rounded-xl shadow-lg border border-gray-700">
+      </div>
+      <div class="mt-8 bg-gray-800 p-6 rounded-xl border border-gray-700">
+        <h3 class="text-2xl font-semibold text-center mb-2">Dietary recommendations</h3>
+        <p class="text-center mb-6 text-gray-400">Auto-generated suggestions based on your BMI.</p>
+        <ul id="diet-list" class="space-y-4 list-disc list-inside text-gray-300"></ul>
+      </div>
+    </section>
+
+    <!-- WORKOUT PLAN -->
+     <div class="grid md:grid-cols-3 gap-8 mb-12">
+      <img src="https://media.istockphoto.com/id/2153823097/de/foto/fr%C3%B6hliches-sportliches-paar-joggt-durch-den-park.jpg?s=1024x1024&w=is&k=20&c=Y9JQb9tagp0fRN6A5_KCgvGtfwA99Bs071gk5NzE24M=" alt="Yoga" class="rounded-xl shadow-lg border border-gray-700">
+      <img src="https://cdn.pixabay.com/photo/2017/04/27/08/29/man-2264825_1280.jpg" alt="Yoga" class="rounded-xl shadow-lg border border-gray-700">
+      <img src="https://cdn.pixabay.com/photo/2016/09/21/22/58/sport-1685933_1280.jpg" alt="Yoga" class="rounded-xl shadow-lg border border-gray-700">
+     </div>
+    <section id="workout" class="bg-gray-900 p-10 rounded-3xl shadow-xl border border-gray-800">
+      <h2 class="text-4xl font-bold text-red-300 text-center mb-10">Dynamic Workout Recommendations</h2>
+      <div class="mb-6 text-gray-300 text-center">
+        Plans adapt to BMI, gender and goals (gain, maintain, lose).
+      </div>
+
+      <!-- Workout api-->
+      <div id="workout-plan" class="grid md:grid-cols-2 gap-6">
+        <!-- Card A -->
+        <div class="p-6 bg-gray-800 rounded-xl border border-gray-700">
+          <h3 class="text-xl font-semibold mb-2">Circuit A — Goal: <span id="goal-a">--</span></h3>
+          <ul id="circuit-a" class="space-y-2 list-disc list-inside text-gray-300"></ul>
+        </div>
+        <!-- card b -->
+        <div class="p-6 bg-gray-800 rounded-xl border border-gray-700">
+          <h3 class="text-xl font-semibold mb-2">Circuit B — Goal: <span id="goal-b">--</span></h3>
+          <ul id="circuit-b" class="space-y-2 list-disc list-inside text-gray-300"></ul>
+        </div>
+      </div>
+
+      <p id="workout-status" class="mt-4 text-sm text-gray-400 text-center"></p>
+    </section>
+
+    <!-- IDEAL WEIGHT -->
+    <section id="ideal" class="bg-gray-900 p-10 rounded-3xl shadow-xl border border-gray-800">
+      <h2 class="text-4xl font-bold text-purple-300 text-center mb-10">Ideal Weight</h2>
+      <p class="text-center mb-8 text-gray-300">Ideal weight varies by height and gender. Use this table as a general reference.</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-center border-collapse border border-gray-700">
+          <thead class="bg-gray-800 text-gray-200">
+            <tr>
+              <th class="p-3 border border-gray-600">Height (cm)</th>
+              <th class="p-3 border border-gray-600">Ideal weight range (kg)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="p-3 border border-gray-600">150</td><td class="p-3 border border-gray-600">45–56</td></tr>
+            <tr><td class="p-3 border border-gray-600">160</td><td class="p-3 border border-gray-600">50–62</td></tr>
+            <tr><td class="p-3 border border-gray-600">170</td><td class="p-3 border border-gray-600">56–72</td></tr>
+            <tr><td class="p-3 border border-gray-600">180</td><td class="p-3 border border-gray-600">63–80</td></tr>
+            <tr><td class="p-3 border border-gray-600">190</td><td class="p-3 border border-gray-600">70–90</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 border-t border-gray-800">
+    <p>© Carl Brown 2025</p>
+  </footer>
+
+  <!-- REQUIRED SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
